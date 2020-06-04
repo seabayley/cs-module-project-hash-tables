@@ -16,19 +16,19 @@ def f(x):
 
 for i in q:
     for j in q:
+        fi = f(i)
+        fj = f(j)
         if (j, i) not in sum_map:
-            sum_map[(i, j)] = f(i) + f(j)
-        diff_map[(i, j)] = f(i) - f(j)
+            sum_map[(i, j)] = ((fi + fj, fi, fj))
+        diff_map[(i, j)] = ((fi - fj, fi, fj))
 
 for d in diff_map.items():
     for s in sum_map.items():
-        if d[1] == s[1]:
-            s1 = s[0][0]
-            s2 = s[0][1]
-            d1 = d[0][0]
-            d2 = d[0][1]
+        if s[1][0] == d[1][0]:
+            ((s1, s2), (st, s1v, s2v)) = s
+            ((d1, d2), (dt, d1v, d2v)) = d
             print(
-                f"f({s1}) + f({s2}) = f({d1}) - f({d2})  {f(s1)} + {f(s2)} = {f(d1)} - {f(d2)}")
+                f"f({s1}) + f({s2}) = f({d1}) - f({d2})  {s1v} + {s2v} = {d1v} - {d2v}")
             if s1 != s2:
                 print(
-                    f"f({s2}) + f({s1}) = f({d1}) - f({d2})  {f(s2)} + {f(s1)} = {f(d1)} - {f(d2)}")
+                    f"f({s2}) + f({s1}) = f({d1}) - f({d2})  {s2v} + {s1v} = {d1v} - {d2v}")

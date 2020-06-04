@@ -1,6 +1,6 @@
 def no_dups(s):
-    # Your code here
-
+    s = s.split()
+    return ' '.join([i for n, i in enumerate(s) if i not in s[:n]])
 
 
 if __name__ == "__main__":
